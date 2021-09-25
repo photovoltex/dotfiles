@@ -13,7 +13,7 @@ switch then to the created user
 ## dotfiles setup
 execute in `~/`
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup)"
 ```
 or
 ```shell
@@ -24,6 +24,12 @@ git fetch
 git submodule update --init
 ```
 
+switch then your shell switch to the shell for the current session and reload the `.zshrc` file
+```
+chsh -s $(which zsh)
+zsh
+source .zshrc
+```
 ## packages
 ```
 pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi
@@ -55,9 +61,9 @@ base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slic
 ## yay (yeah :D)
 ### install
 ```shell
-mkdir -p ~/Download/yay
-git clone https://aur.archlinux.org/yay.git ~/Download/yay
-cd ~/Download/yay
+mkdir -p ~/Downloads/yay
+git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
+cd ~/Downloads/yay
 makepkg
 ```
 install it then with `pacman -U <compiled yay pkg>` \

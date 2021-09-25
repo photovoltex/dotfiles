@@ -1,5 +1,7 @@
+#!/bin/sh
+
 sudo pacman -S base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slick-greeter firefox code neofetch
-mkdir -p ~/Download/yay
-git clone https://aur.archlinux.org/yay.git ~/Download/yay
-cd ~/Download/yay
+mkdir -p ~/Downloads/yay
+git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
+cd ~/Downloads/yay
 makepkg
