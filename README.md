@@ -1,9 +1,36 @@
 # Overall WIP
 
 # dotfiles and small install guide
+
+## root setup
+```shell
+useradd -m <username>
+passwd <username>
+```
+add the user to sudo via `visudo` (`EDITOR=vim visudo`) like `<username> ALL=(ALL) ALL` (see root entry) \
+switch then to the created user
+
+## dotfiles setup
+execute in `~/`
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup.sh)"
+```
+or
+```shell
+git init
+git branch -m main
+git remote add origin https://github.com/photovoltex/dotfiles.git
+git fetch
+git submodule update --init
+```
+
 ## packages
 ```
-networkmanager sudo base-devel wget git cmake zsh vi vim ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slick-greeter firefox code neofetch
+pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi
+```
+`.dot-pkg-setup.sh` is a setup file for installing all packages below and builds the yay package
+```
+base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slick-greeter firefox code neofetch
 ```
 - networkmanager
 - sudo
@@ -28,7 +55,7 @@ networkmanager sudo base-devel wget git cmake zsh vi vim ttf-hack xorg xorg-xini
 ## yay (yeah :D)
 ### install
 ```shell
-mkdir ~/Download/yay
+mkdir -p ~/Download/yay
 git clone https://aur.archlinux.org/yay.git ~/Download/yay
 cd ~/Download/yay
 makepkg
