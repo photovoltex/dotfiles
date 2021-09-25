@@ -1,3 +1,5 @@
+# Overall WIP
+
 # dotfiles and small install guide
 ## packages
 ```
@@ -23,7 +25,7 @@ networkmanager sudo base-devel wget git cmake zsh vi vim ttf-hack xorg xorg-xini
 - code
 - neofetch
 
-## yay
+## yay (yeah :D)
 ### install
 ```shell
 mkdir ~/Download/yay
@@ -31,7 +33,8 @@ git clone https://aur.archlinux.org/yay.git ~/Download/yay
 cd ~/Download/yay
 makepkg
 ```
-install it then with `pacman -U <compiled yay pkg>`
+install it then with `pacman -U <compiled yay pkg>` \
+afterwards u can remove the yay dir
 ### packages
 ```
 yay -S polybar uwufetch
@@ -40,10 +43,19 @@ yay -S polybar uwufetch
 - uwufetch
 
 ## virtualbox
-instead of `picom` -> `picom --experimental-backend` (.config/i3/config)
+- https://wiki.archlinux.org/title/VirtualBox
+  ```
+  sudo pacman -S virtualbox virtualbox-guest-iso
+  mount /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso /mnt
+  /mnt/VBoxLinuxAdditions.run
+  ```
+- instead of `picom` -> `picom --experimental-backend` (.config/i3/config)
+  - dotn know if picom will actually work... did only test it in an vm so far... WIP and so 
 
 ## font
 run `fc-cache -vf` to find all fonts installed
+
+# WIP
 
 ## lightdm
 ### setting up the greeter
