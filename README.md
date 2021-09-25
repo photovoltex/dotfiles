@@ -24,7 +24,7 @@ git fetch
 git submodule update --init
 ```
 
-switch then your shell switch to the shell for the current session and reload the `.zshrc` file
+switch then your shell to zsh and reload the `.zshrc` file
 ```
 chsh -s $(which zsh)
 zsh
@@ -34,9 +34,9 @@ source .zshrc
 ```
 pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi
 ```
-`.dot-pkg-setup.sh` is a setup file for installing all packages below and builds the yay package
+`.dot-pkg-setup` is a setup to install all packages below and builds the yay package
 ```
-base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slick-greeter firefox code neofetch
+base-devel wget cmake go zsh ttf-hack xorg xorg-xinit i3 dmenu picom lightdm lightdm-slick-greeter kitty bpytop firefox code neofetch
 ```
 - networkmanager
 - sudo
@@ -44,6 +44,7 @@ base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slic
 - wget
 - git
 - cmake
+- go
 - zsh
 - vi
 - vim
@@ -51,9 +52,12 @@ base-devel wget cmake zsh ttf-hack xorg xorg-xinit i3 picom lightdm lightdm-slic
 - xorg
 - xorg-xinit
 - i3
+- dmenu (will probably replace with rofi)
 - picom
 - lightdm
 - lightdm-slick-greeter
+- kitty
+- bpytop
 - firefox 
 - code
 - neofetch
@@ -66,7 +70,7 @@ git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
 cd ~/Downloads/yay
 makepkg
 ```
-install it then with `pacman -U <compiled yay pkg>` \
+install it then with `pacman -U Downloads/yay/yay-<version>.pkg.tar.zst` \
 afterwards u can remove the yay dir
 ### packages
 ```
@@ -83,10 +87,10 @@ yay -S polybar uwufetch
   /mnt/VBoxLinuxAdditions.run
   ```
 - instead of `picom` -> `picom --experimental-backend` (.config/i3/config)
-  - dotn know if picom will actually work... did only test it in an vm so far... WIP and so 
+  - don't know if picom will actually work... did only test it in an vm so far... WIP and so 
 
 ## font
-run `fc-cache -vf` to find all fonts installed
+execute `fc-cache -vf` to cache all installed fonts
 
 # WIP
 
