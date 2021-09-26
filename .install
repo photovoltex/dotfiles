@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cd ~
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup.sh)"
+
+chmod +x .dot-?*-setup.sh
+./.dot-pkg-setup.sh
+./.dot-syl-setup.sh
+
+exit

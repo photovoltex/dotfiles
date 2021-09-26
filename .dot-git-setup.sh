@@ -7,5 +7,3 @@ git remote add origin https://github.com/photovoltex/dotfiles.git
 git fetch
 git checkout -t origin/main
 git submodule update --init
-
-source ~/.zshrc

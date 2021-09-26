@@ -21,7 +21,7 @@ switch then to the created user
 ## dotfiles setup
 execute in `~/`
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install)"
 ```
 - accept every prompt
 ## packages

@@ -34,8 +34,8 @@
 !.config/polybar
 !.config/polybar/**
 
-!.install.sh
-!.dot-?*-setup
+!.install
+!.dot-?*-setup.sh
 
 # wallpapers
 !Wallpapers/
