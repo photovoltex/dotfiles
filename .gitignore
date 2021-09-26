@@ -1,0 +1,28 @@
+# ignore all
+**
+!.gitignore
+
+# documentation!!!!
+!README.md
+
+# x stuff
+!.zprofile
+!.xinitrc
+
+# ohmyzsh
+!.zshrc
+!.oh-my-zsh/
+!.oh-my-zsh/**
+
+# config files
+!.config/
+!.config/i3
+!.config/i3/**
+!.config/kitty
+!.config/kitty/**
+!.config/lightdm
+!.config/lightdm/**
+
+# wallpapers
+!Wallpapers/
+!Wallpapers/**
