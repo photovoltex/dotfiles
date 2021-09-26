@@ -1,7 +1,10 @@
-# Overall WIP
+# WIP
 
 # dotfiles and small install guide
 
+- a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide))
+
+- [`.dot-pkg-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-pkg-setup) all pkg installation
 ## root setup
 ```shell
 useradd -m <username>
@@ -15,105 +18,80 @@ execute in `~/`
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup)"
 ```
-or
-```shell
-git init
-git branch -m main
-git remote add origin https://github.com/photovoltex/dotfiles.git
-git fetch
-git submodule update --init
-```
-
-switch then your shell to zsh and reload the `.zshrc` file
-```
-chsh -s $(which zsh)
-zsh
-source .zshrc
-```
 ## packages
-```
-pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi
-```
-`.dot-pkg-setup` is a setup to install all packages below and builds the yay package
-```
-base-devel wget cmake go zsh ttf-hack xorg xorg-xinit i3 dmenu picom lightdm lightdm-slick-greeter kitty bpytop firefox code neofetch
-```
 - networkmanager
 - sudo
-- base-devel
-- wget
 - git
-- cmake
-- go
 - zsh
 - vi
 - vim
-- ttf-hack
+- base-devel
+- cmake
+- go
+- unzip
 - xorg
 - xorg-xinit
 - i3
-- dmenu (will probably replace with rofi)
+- rofi
 - picom
 - lightdm
 - lightdm-slick-greeter
 - kitty
+- nitrogen
 - bpytop
 - firefox 
+- thunar
 - code
 - neofetch
+- ttf-hack
+- yay
+  - polybar
+  - uwufetch
+
+```
+pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
+```
+```
+pacman -S base-devel cmake go unzip \
+xorg xorg-xinit i3 rofi picom lightdm lightdm-slick-greeter \
+kitty nitrogen bpytop firefox thunar code neofetch ttf-hack
+```
+```
+yay -S polybar uwufetch
+```
 
 ## yay (yeah :D)
-### install
 ```shell
 mkdir -p ~/Downloads/yay
 git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
 cd ~/Downloads/yay
-makepkg
+makepkg -f
+sudo pacman -U ~/Downloads/yay/yay-?*.pkg.tar.zst
+rm -rf ~/Downloads/yay
 ```
-install it then with `pacman -U Downloads/yay/yay-<version>.pkg.tar.zst` \
-afterwards u can remove the yay dir
-### packages
-```
-yay -S polybar uwufetch
-```
-- polybar
-- uwufetch
 
 ## virtualbox
 - https://wiki.archlinux.org/title/VirtualBox
   ```
-  sudo pacman -S virtualbox virtualbox-guest-iso
+  sudo pacman -S virtualbox-guest-iso
   mount /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso /mnt
-  /mnt/VBoxLinuxAdditions.run
+  cd /mnt
+  ./VBoxLinuxAdditions.run
   ```
-- instead of `picom` -> `picom --experimental-backend` (.config/i3/config)
-  - don't know if picom will actually work... did only test it in an vm so far... WIP and so 
+- sometimes you need `picom --experimental-backend` instead of `picom` (.config/i3/config)
 
 ## font
 execute `fc-cache -vf` to cache all installed fonts
 
-# WIP
-
 ## lightdm
-### setting up the greeter
-
+see [.dot-syl-setup](https://github.com/photovoltex/dotfiles/blob/main/.dot-syl-setup)
 ```
 sudo usermod -aG $(whoami) lightdm
 chmod g+rx ~
+sudo rm -f /etc/lightdm/lightdm.conf
 sudo ln -s ~/.config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+sudo ln -s ~/.config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
 sudo ln -s ~/Wallpapers/3440x1440p_neon.jpg /usr/share/pixmaps/3440x1440p_neon.jpg
-```
-```
-/etc/lightdm/lightdm.conf
----------------------------------------
-[Seat:*]
-...
-greeter-session=lightdm-slick-greeter
-...
-logind-check-graphical=true
-```
 
-### enable
-```
 systemctl enable lightdm
 ```
