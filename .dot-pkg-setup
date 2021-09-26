@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo pacman -S base-devel cmake go unzip ttf-hack xorg xorg-xinit i3 dmenu picom lightdm lightdm-slick-greeter kitty nitrogen bpytop firefox code neofetch
+sudo pacman -S base-devel cmake go unzip ttf-hack xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter kitty nitrogen bpytop firefox thunar code neofetch
 mkdir -p ~/Downloads/yay
 git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
 cd ~/Downloads/yay

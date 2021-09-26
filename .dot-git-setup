@@ -8,4 +8,4 @@ git fetch
 git checkout -t origin/main
 git submodule update --init
 
-source .zshrc
+source ~/.zshrc

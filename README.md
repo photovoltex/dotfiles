@@ -2,22 +2,28 @@
 
 # dotfiles and small install guide
 
-- a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide))
-
+- a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide#Partition_the_disks))
+- [`.dot-git-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-git-setup) setups the git repo in the home dir 
 - [`.dot-pkg-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-pkg-setup) all pkg installation
-## root setup
+## root adding user setup
 ```shell
 useradd -m <username>
 passwd <username>
+chsh -s /bin/zsh <username>
+EDITOR=vim visudo
 ```
 add the user to sudo via `visudo` (`EDITOR=vim visudo`) like `<username> ALL=(ALL) ALL` (see root entry) \
 switch then to the created user
 
+> don't forget to enable NetworkManager -> systemctl enable NetworkManager.service
+
+> the first login with the new user will show a notice fro zsh, ignore it with `q`
 ## dotfiles setup
 execute in `~/`
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install.sh)"
 ```
+- accept every prompt
 ## packages
 - networkmanager
 - sudo
@@ -39,7 +45,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
 - kitty
 - nitrogen
 - bpytop
-- firefox 
+- firefox
 - thunar
 - code
 - neofetch
