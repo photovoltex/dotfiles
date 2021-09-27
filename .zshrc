@@ -97,3 +97,4 @@ export EDITOR=code
 alias uwu="uwufetch"
 alias la="ls -a"
 alias pac="pacman"
+alias kitty-fonts="kitty + list-fonts --psnames"

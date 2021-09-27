@@ -29,7 +29,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec --no-startup-id nitrogen --set-zoom-fill /usr/share/pixmaps/3440x1440p_neon.jpg
+# exec --no-startup-id nitrogen --set-zoom-fill /usr/share/pixmaps/3440x1440p_neon.jpg
+# restores color scheme
+exec --no-startup-id wal -R
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -199,6 +201,12 @@ bar {
 }
 
 # custom
+
+#remove border and title
+for_window [class="^.*"] border pixel 0
+
+# launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# launch composer
 exec picom &

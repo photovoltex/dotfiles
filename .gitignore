@@ -33,6 +33,8 @@
 !.config/gtk-3.0/**
 !.config/polybar
 !.config/polybar/**
+!.config/wal
+!.config/wal/**/*
 
 !.install
 !.dot-?*-setup

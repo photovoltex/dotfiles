@@ -5,7 +5,7 @@
 - a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide#Partition_the_disks))
 - [`.dot-git-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-git-setup) setups the git repo in the home dir 
 - [`.dot-pkg-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-pkg-setup) all pkg installation
-## root adding user setup
+## root setup (arch-chroot or after installation)
 ```shell
 useradd -m <username>
 passwd <username>
@@ -18,12 +18,13 @@ switch then to the created user
 > don't forget to enable NetworkManager -> systemctl enable NetworkManager.service
 
 > the first login with the new user will show a notice fro zsh, ignore it with `q`
-## dotfiles setup
-execute in `~/`
+
+# user setup
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install)"
 ```
-- accept every prompt
+> accept every prompt
+
 ## packages
 - networkmanager
 - sudo
@@ -31,10 +32,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
 - zsh
 - vi
 - vim
+
 - base-devel
 - cmake
 - go
-- unzip
+
 - xorg
 - xorg-xinit
 - i3
@@ -42,28 +44,49 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
 - picom
 - lightdm
 - lightdm-slick-greeter
+
+- ttf-fira-sans
+- ttf-fira-code
+
 - kitty
 - nitrogen
-- bpytop
 - firefox
-- thunar
+- nemo
 - code
+
+- unzip
+- bpytop
 - neofetch
-- ttf-hack
+- lolcat
+
 - yay
   - polybar
   - uwufetch
+  - python-pip
+  - python-pywal
+
+> WIP packages
+- oomox (python-pywal -> https://github.com/GideonWolfe/Chameleon)
+    - pywal-discord
+    - telegram-pallette-gen
+    - [telegram-palette-gen](https://github.com/matgua/telegram-palette-gen)
+    - [wal-discord](https://github.com/guglicap/wal-discord)
+    - [pywalfox](https://github.com/Frewacom/Pywalfox)
+    - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
 
 ```
 pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
 ```
 ```
-pacman -S base-devel cmake go unzip \
-xorg xorg-xinit i3 rofi picom lightdm lightdm-slick-greeter \
-kitty nitrogen bpytop firefox thunar code neofetch ttf-hack
+sudo pacman -S \
+    base-devel cmake go \
+    xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
+    ttf-fira-sans ttf-fira-code
+    kitty nitrogen firefox nemo code \
+    unzip bpytop neofetch lolcat
 ```
 ```
-yay -S polybar uwufetch
+yay -S polybar uwufetch python-pip python-pywal
 ```
 
 ## yay (yeah :D)

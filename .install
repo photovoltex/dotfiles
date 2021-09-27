@@ -1,10 +1,43 @@
 #!/bin/sh
 
 cd ~
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.dot-git-setup)"
 
-chmod +x .dot-?*-setup
-./.dot-pkg-setup
-./.dot-syl-setup
+# git setup in the root directory
+git config --global init.defaultBranch main
+git init
+git branch -m main
+git remote add origin https://github.com/photovoltex/dotfiles.git
+git fetch
+git checkout -t origin/main
+git submodule update --init
 
-exit
+# install base packages
+sudo pacman -S \
+    base-devel cmake go \
+    xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
+    ttf-fira-sans ttf-fira-code
+    kitty nitrogen firefox nemo code \
+    unzip bpytop neofetch lolcat
+
+# auto install yay
+mkdir -p ~/Downloads/yay
+git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
+cd ~/Downloads/yay
+makepkg -f
+sudo pacman -U ~/Downloads/yay/yay-?*.pkg.tar.zst
+rm -rf ~/Downloads/yay
+
+# install base packages
+yay -S polybar uwufetch python-pip python-pywal
+
+# symlink setup to use config from repository
+sudo usermod -aG $(whoami) lightdm
+chmod g+rx ~
+sudo mv /etc/lightdm/lightdm.conf ~/.lightdm.conf
+sudo ln -s ~/.config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+sudo ln -s ~/.config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+sudo ln -s ~/Wallpapers/3440x1440p_neon.jpg /usr/share/pixmaps/3440x1440p_neon.jpg
+
+wal -i ~/Wallpapers/3440x1440p_neon.jpg
+
+systemctl enable lightdm
