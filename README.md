@@ -15,10 +15,6 @@ EDITOR=vim visudo
 add the user to sudo via `visudo` (`EDITOR=vim visudo`) like `<username> ALL=(ALL) ALL` (see root entry) \
 switch then to the created user
 
-> don't forget to enable NetworkManager -> systemctl enable NetworkManager.service
-
-> the first login with the new user will show a notice fro zsh, ignore it with `q`
-
 # user setup
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install)"
@@ -26,53 +22,54 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
 > accept every prompt
 
 ## packages
-- networkmanager
-- sudo
-- git
-- zsh
-- vi
-- vim
-
-- base-devel
-- cmake
-- go
-
-- xorg
-- xorg-xinit
-- i3
-- rofi
-- picom
-- lightdm
-- lightdm-slick-greeter
-
-- ttf-fira-sans
-- ttf-fira-code
-
-- kitty
-- nitrogen
-- firefox
-- nemo
-- code
-
-- unzip
-- bpytop
-- neofetch
-- lolcat
-
-- yay
+- base packages
+  - networkmanager
+  - sudo
+  - git
+  - zsh
+  - vi
+  - vim
+- dev packages
+  - base-devel
+  - cmake
+  - go
+- x related packages
+  - xorg
+  - xorg-xinit
+  - i3
+  - rofi
+  - picom
+  - lightdm
+  - lightdm-slick-greeter
+- font packages
+  - ttf-fira-sans
+  - ttf-fira-code
+- gui packages
+  - kitty
+  - nitrogen
+  - firefox
+  - nemo
+  - code
+- cli packages
+  - unzip
+  - bpytop
+  - neofetch
+  - lolcat
+- yay packages
   - polybar
   - uwufetch
   - python-pip
   - python-pywal
 
 > WIP packages
-- oomox (python-pywal -> https://github.com/GideonWolfe/Chameleon)
-    - pywal-discord
-    - telegram-pallette-gen
-    - [telegram-palette-gen](https://github.com/matgua/telegram-palette-gen)
-    - [wal-discord](https://github.com/guglicap/wal-discord)
-    - [pywalfox](https://github.com/Frewacom/Pywalfox)
-    - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
+- [Chameleon](https://github.com/GideonWolfe/Chameleon)
+  - oomox
+  - pywal-discord
+  - telegram-pallette-gen
+  - [telegram-palette-gen](https://github.com/matgua/telegram-palette-gen)
+  - [wal-discord](https://github.com/guglicap/wal-discord)
+  - [pywalfox](https://github.com/Frewacom/Pywalfox)
+  - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
 
 ```
 pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
@@ -81,7 +78,7 @@ pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
 sudo pacman -S \
     base-devel cmake go \
     xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
-    ttf-fira-sans ttf-fira-code
+    ttf-fira-sans ttf-fira-code \
     kitty nitrogen firefox nemo code \
     unzip bpytop neofetch lolcat
 ```

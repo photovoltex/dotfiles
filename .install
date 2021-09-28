@@ -2,6 +2,11 @@
 
 cd ~
 
+mv ~/.zshrc ~/.zshrc.old
+
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+
 # git setup in the root directory
 git config --global init.defaultBranch main
 git init
@@ -15,7 +20,7 @@ git submodule update --init
 sudo pacman -S \
     base-devel cmake go \
     xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
-    ttf-fira-sans ttf-fira-code
+    ttf-fira-sans ttf-fira-code \
     kitty nitrogen firefox nemo code \
     unzip bpytop neofetch lolcat
 
@@ -28,7 +33,7 @@ sudo pacman -U ~/Downloads/yay/yay-?*.pkg.tar.zst
 rm -rf ~/Downloads/yay
 
 # install base packages
-yay -S polybar uwufetch python-pip python-pywal
+yay -S python-pip python-pywal polybar uwufetch
 
 # symlink setup to use config from repository
 sudo usermod -aG $(whoami) lightdm
@@ -38,6 +43,7 @@ sudo ln -s ~/.config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
 sudo ln -s ~/.config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
 sudo ln -s ~/Wallpapers/3440x1440p_neon.jpg /usr/share/pixmaps/3440x1440p_neon.jpg
 
-wal -i ~/Wallpapers/3440x1440p_neon.jpg
+wal -i ~/Wallpapers/default-?*.jpg
 
-systemctl enable lightdm
+sudo systemctl enable lightdm
+sudo systemctl restart lightdm
