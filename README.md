@@ -3,8 +3,6 @@
 # dotfiles and small install guide
 
 - a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide#Partition_the_disks))
-- [`.dot-git-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-git-setup) setups the git repo in the home dir 
-- [`.dot-pkg-setup`](https://github.com/photovoltex/dotfiles/blob/main/.dot-pkg-setup) all pkg installation
 ## root setup (arch-chroot or after installation)
 ```shell
 useradd -m <username>
@@ -46,8 +44,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
   - ttf-fira-code
 - gui packages
   - kitty
-  - nitrogen
   - firefox
+  - feh
+  - zathura
   - nemo
   - code
 - cli packages
@@ -84,7 +83,7 @@ sudo pacman -S \
     base-devel cmake go \
     xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
     ttf-fira-sans ttf-fira-code \
-    kitty nitrogen firefox nemo code \
+    kitty firefox feh zathura nemo code \
     unzip bpytop neofetch lolcat
 ```
 ```

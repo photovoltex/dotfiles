@@ -74,9 +74,7 @@ export UPDATE_ZSH_DAYS=13
 plugins=(
    git
    dotenv
-   lol
    npm
-   sudo
    zsh_reload
 )
 
@@ -85,8 +83,11 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export LANG=en_US.UTF-8
+
 export VISUAL=vim
 export EDITOR=code
+
+export PATH=$HOME/.local/bin:$PATH
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -94,7 +95,9 @@ export EDITOR=code
 # For a full list of active aliases, run `alias`.
 
 # alias
-alias uwu="uwufetch"
 alias la="ls -a"
 alias pac="pacman"
-alias kitty-fonts="kitty + list-fonts --psnames"
+alias icat="kitty +kitten icat"
+
+alias uwu="uwufetch"
+alias fcat="kitty + list-fonts --psnames"

@@ -21,7 +21,7 @@ sudo pacman -S \
     base-devel cmake go \
     xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
     ttf-fira-sans ttf-fira-code \
-    kitty nitrogen firefox nemo code \
+    kitty firefox feh zathura nemo code \
     unzip bpytop neofetch lolcat
 
 # auto install yay
@@ -46,4 +46,9 @@ sudo ln -s ~/Wallpapers/default-?*.jpg /usr/share/pixmaps/wallpaper.jpg
 wal -i ~/Wallpapers/default-?*.jpg
 
 sudo systemctl enable lightdm
+
+# install bash-cat-with-cat
+curl https://raw.githubusercontent.com/GuidoFe/bash-cat-with-cat/main/cat.sh -o ~/.local/bin/catcat
+
+
 sudo systemctl restart lightdm
