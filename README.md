@@ -62,10 +62,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
   - python-pywal
 
 > WIP packages
+- icon theme
+  - https://www.opencode.net/adhe/hey-icons
+  - ...
 - [Chameleon](https://github.com/GideonWolfe/Chameleon)
   - oomox
   - pywal-discord
   - telegram-pallette-gen
+  - [slickgreeter-pywal](https://github.com/Paul-Houser/slickgreeter-pywal)
+  - [Zathura-Pywal](https://github.com/GideonWolfe/Zathura-Pywal)
   - [telegram-palette-gen](https://github.com/matgua/telegram-palette-gen)
   - [wal-discord](https://github.com/guglicap/wal-discord)
   - [pywalfox](https://github.com/Frewacom/Pywalfox)
