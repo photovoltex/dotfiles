@@ -38,10 +38,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-set $up l
-set $down k
-set $left j
-set $right semicolon
+set $up h
+set $down j
+set $left k
+set $right l
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -62,10 +62,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{termina
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+# bindsym $mod+$left focus left
+# bindsym $mod+$down focus down
+# bindsym $mod+$up focus up
+# bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -194,8 +194,8 @@ bindsym $mod+r mode "resize"
 #remove border and title
 for_window [class=.*] border pixel 0
 
-gaps inner 20
-gaps outer 5
+gaps inner 5
+gaps outer 0
 smart_gaps on
 
 # launch polybar

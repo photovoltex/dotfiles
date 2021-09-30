@@ -1,5 +1,5 @@
-gtk-theme-name="Wal"
-gtk-icon-theme-name="candy-icons"
+gtk-theme-name="pywal"
+gtk-icon-theme-name="Lyra-blue-dark"
 gtk-font-name="Fira Sans 11"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0

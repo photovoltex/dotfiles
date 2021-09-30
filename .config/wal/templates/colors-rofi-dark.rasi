@@ -1,13 +1,15 @@
 configuration {{
-	display-drun:    "/";
-	display-window:  "";
+	modi: "drun,window,combi";
+	display-drun:    "run";
+	display-window:  "active";
+	display-combi:   "all";
 	show-icons:      true;
 	sidebar-mode:    true;
 }}
 
 
 * {{
-    active-background: {color2};
+    active-background: {color1};
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -21,12 +23,12 @@ configuration {{
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: {color1};
-    selected-active-foreground: @foreground;
-    selected-normal-background: {color2};
-    selected-normal-foreground: @foreground;
-    selected-urgent-background: {color3};
-    selected-urgent-foreground: @foreground;
+    selected-active-background: {color0};
+    selected-active-foreground: {color1};
+    selected-normal-background: {color0};
+    selected-normal-foreground: {color1};
+    selected-urgent-background: {color0};
+    selected-urgent-foreground: {color1};
 
     background-color: @background;
     background: {background};
@@ -38,7 +40,7 @@ configuration {{
 window {{
 	location:	        west;
 	anchor:		        west;
-	height:		        96%;
+	height:		        100%;
 	width:		        410px;
 	orientation:        horizontal;
 	children:	        [mainbox];
@@ -61,7 +63,7 @@ button selected {{
 textbox {{
 	expand:             false;
 	text-color:         @normal-foreground;
-	background-color:   #212D32;
+	background-color:   @background;
 	padding:            12px;
 	font:               "Fira Sans 11";
   	horizontal-align:   0;
@@ -81,6 +83,7 @@ listview {{
 	spacing:            0em;
 	dynamic:            false;
 	cycle:              true;
+	scrollbar:          false;
 }}
 
 element {{
@@ -92,7 +95,7 @@ element {{
 entry {{
 	expand:             true;
 	text-color:         @normal-foreground;
-	background-color:   #212D32;
+	background-color:   @background;
 	vertical-align:     1;
 	padding:            12px;
 	font:               "Fira Sans 11";

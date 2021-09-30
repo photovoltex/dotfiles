@@ -98,6 +98,7 @@ export PATH=$HOME/.local/bin:$PATH
 alias la="ls -a"
 alias pac="pacman"
 alias icat="kitty +kitten icat"
+alias rwal="wal -c && wal -qi Wallpapers/default-?*.jpg"
 
 alias uwu="uwufetch"
 alias fcat="kitty + list-fonts --psnames"
