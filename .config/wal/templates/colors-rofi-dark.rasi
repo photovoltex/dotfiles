@@ -1,12 +1,13 @@
 configuration {{
-	modi: "drun,window,combi";
-	display-drun:    "run";
-	display-window:  "active";
-	display-combi:   "all";
-	show-icons:      true;
-	sidebar-mode:    true;
-}}
+	combi-modi:             "drun,window";
+    combi-hide-mode-prefix: true;
+	show-icons:             true;
+	sidebar-mode:           true;
+	font:                   "Fira 12";
+    scroll-method:          1;
 
+    /* kb-screenshot: "Alt+S"; */
+}}
 
 * {{
     active-background: {color1};
@@ -38,10 +39,10 @@ configuration {{
 }}
 
 window {{
-	location:	        west;
-	anchor:		        west;
-	height:		        100%;
-	width:		        410px;
+	location:	        north west;
+	anchor:		        north west;
+	height:		        50%;
+	width:		        350px;
 	orientation:        horizontal;
 	children:	        [mainbox];
 }}
@@ -51,23 +52,10 @@ mainbox {{
     border:             0;
 	padding:            0;
 	width:              200px;
-	children:           [ inputbar, message, listview, sidebar ];
+	children:           [ inputbar, listview ];
 	expand:             true;
 }}
 
-button selected {{
-	background-color:   @background-color;
-	text-color:         @winbg;
-}}
-
-textbox {{
-	expand:             false;
-	text-color:         @normal-foreground;
-	background-color:   @background;
-	padding:            12px;
-	font:               "Fira Sans 11";
-  	horizontal-align:   0;
-}}
 
 inputbar {{
     children: [ entry ];
@@ -83,7 +71,6 @@ listview {{
 	spacing:            0em;
 	dynamic:            false;
 	cycle:              true;
-	scrollbar:          false;
 }}
 
 element {{
@@ -98,22 +85,6 @@ entry {{
 	background-color:   @background;
 	vertical-align:     1;
 	padding:            12px;
-	font:               "Fira Sans 11";
-}}
-
-element normal.normal {{
-	background-color:   @normal-background;
-	text-color:         @normal-foreground;
-}}
-
-element normal.urgent {{
-	background-color:   @urgent-background;
-	text-color:         @urgent-foreground;
-}}
-
-element normal.active {{
-	background-color:   @active-background;
-	text-color:         @active-foreground;
 }}
 
 element selected.normal {{
@@ -122,29 +93,4 @@ element selected.normal {{
 	padding:            16px;
 	border:             0 0 0 5px solid;
 	border-color:	    @active-background;
-}}
-
-element selected.urgent {{
-	background-color:   @selected-urgent-background;
-	text-color:         @selected-urgent-foreground;
-}}
-
-element selected.active {{
-	background-color:   @selected-active-background;
-	text-color:         @selected-active-foreground;
-}}
-
-element alternate.normal {{
-	background-color:   @normal-background;
-	text-color:         @normal-foreground;
-}}
-
-element alternate.urgent {{
-	background-color:   @urgent-background;
-	text-color:         @urgent-foreground;
-}}
-
-element alternate.active {{
-	background-color: @active-background;
-	text-color:       @active-foreground;
 }}

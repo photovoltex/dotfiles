@@ -47,8 +47,4 @@ wal -i ~/Wallpapers/default-?*.jpg
 
 sudo systemctl enable lightdm
 
-# install bash-cat-with-cat
-curl https://raw.githubusercontent.com/GuidoFe/bash-cat-with-cat/main/cat.sh -o ~/.local/bin/catcat
-
-
 sudo systemctl restart lightdm
