@@ -36,6 +36,9 @@
 !.config/wal
 !.config/wal/**/*
 
+!.scripts
+!.scripts/**
+
 !.install
 !.dot-?*-setup
 

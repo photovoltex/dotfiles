@@ -1,6 +1,6 @@
-gtk-theme-name="pywal"
-gtk-icon-theme-name="Lyra-blue-dark"
-gtk-font-name="Fira Sans 11"
+gtk-theme-name="pywal-generated"
+gtk-icon-theme-name="Tela-circle-dark"
+gtk-font-name="FiraCodeNerdFontComplete 11"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
