@@ -1,25 +1,53 @@
-# WIP
+# dotfiles
 
-# dotfiles and small install guide
+Requires a default arch installation ([official guide](https://wiki.archlinux.org/title/installation_guide#Partition_the_disks)/[understandable guid](https://itsfoss.com/install-arch-linux/) (isn't perfect)).
 
-- a default arch installation ([guide](https://wiki.archlinux.org/title/installation_guide#Partition_the_disks))
-## root setup (arch-chroot or after installation)
+Recommended `pacstrap` cmd.
+```
+pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
+```
+
+
+
+## root setup
+> This section is recommended to execute during the installation. (during arch-chroot)
 ```shell
+# create user with and home dir for the new user
 useradd -m <username>
+# set password for the new user
 passwd <username>
-chsh -s /bin/zsh <username>
+# change the shell for the user to zsh
+chsh -s /usr/bin/zsh <username>
+# edit sudo so that the user has rights to execute cmd as root
+# EDITOR=vim => visudo will use vim instead of vi
 EDITOR=vim visudo
 ```
-add the user to sudo via `visudo` (`EDITOR=vim visudo`) like `<username> ALL=(ALL) ALL` (see root entry) \
-switch then to the created user
+The last line opens the sudo configuration. Adding a line like `<username> ALL=(ALL) ALL` (see root entry) will give the new created user the permission to execute commands as root.
 
-# user setup
+## user setup
+The following cmd will execute the [`.install`](https://github.com/photovoltex/dotfiles/blob/main/.install) file on your local machine.
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/.install)"
 ```
 > accept every prompt
 
 ## packages
+
+```
+sudo pacman -S \
+    base-devel cmake go nodejs npm \
+    xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
+    kitty firefox feh zathura nemo flameshot telegram-desktop discord \
+    blueman bluez bpytop neofetch \
+    unzip playerctl xclip ntfs-3g otf-fira-sans ttf-hanazono nvidia-settings \
+    lolcat cowsay
+```
+```
+yay -S ncspot polybar uwufetch visual-studio-code-bin \
+    python-pip python-pywal themix-full-git \ 
+    nerd-fonts-jetbrains-mono ttf-symbola
+```
+
 - base packages
   - networkmanager
   - sudo
@@ -31,6 +59,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
   - base-devel
   - cmake
   - go
+  - nodejs
+  - npm
+  - rust (rust custom installation)
 - x related packages
   - xorg
   - xorg-xinit
@@ -39,89 +70,73 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/photovoltex/dotfiles/main/
   - picom
   - lightdm
   - lightdm-slick-greeter
-- font packages
-  - ttf-fira-sans
-  - ttf-fira-code
 - gui packages
   - kitty
   - firefox
   - feh
   - zathura
   - nemo
-  - code
-- cli packages
-  - unzip
+  - flameshot
+  - telegram-desktop
+  - discord
+- bluetooth
+  - bluez
+  - blueman
+- others
   - bpytop
   - neofetch
+  - unzip
+  - playerctl
+  - xclip
+  - ntfs-3g
+  - otf-fira-sans
+  - ttf-hanazono
+  - nvidia-settings
+- more or less useful stuff
   - lolcat
+  - cowsay
 - yay packages
+  - ncspot
   - polybar
   - uwufetch
+  - visual-studio-code-bin
   - python-pip
   - python-pywal
-
-> WIP packages
-- icon theme
-  - https://www.opencode.net/adhe/hey-icons
-  - ...
-- [Chameleon](https://github.com/GideonWolfe/Chameleon)
-  - oomox
-  - pywal-discord
-  - telegram-pallette-gen
-  - [slickgreeter-pywal](https://github.com/Paul-Houser/slickgreeter-pywal)
-  - [Zathura-Pywal](https://github.com/GideonWolfe/Zathura-Pywal)
-  - [telegram-palette-gen](https://github.com/matgua/telegram-palette-gen)
-  - [wal-discord](https://github.com/guglicap/wal-discord)
+  - themix-full-git (oomox)
+  - nerd-fonts-jetbrains-mono
+  - ttf-symbola
+- pywal additions
   - [pywalfox](https://github.com/Frewacom/Pywalfox)
-  - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
+  - [telegram-pallette-gen](https://github.com/agnipau/telegram-palette-gen)
+    - [extension for firefox](https://addons.mozilla.org/en-US/firefox/addon/pywalfox/)
+- icon theme
+  - [Tela-circle-icon-theme](https://github.com/vinceliuice/Tela-circle-icon-theme.git)
 
-```
-pacstrap /mnt base linux linux-firmware git sudo networkmanager vim vi zsh
-```
-```
-sudo pacman -S \
-    base-devel cmake go \
-    xorg xorg-xinit i3 picom rofi lightdm lightdm-slick-greeter \
-    ttf-fira-sans ttf-fira-code \
-    kitty firefox feh zathura nemo code \
-    unzip bpytop neofetch lolcat
-```
-```
-yay -S polybar uwufetch python-pip python-pywal
-```
+> gnome-keyring don't know if installation needed necessary
 
-## yay (yeah :D)
-```shell
-mkdir -p ~/Downloads/yay
-git clone https://aur.archlinux.org/yay.git ~/Downloads/yay
-cd ~/Downloads/yay
-makepkg -f
-sudo pacman -U ~/Downloads/yay/yay-?*.pkg.tar.zst
-rm -rf ~/Downloads/yay
-```
+- recommended
+  - parsec
+  - piper
+  - qemu
+  - virt-manager
 
 ## virtualbox
-- https://wiki.archlinux.org/title/VirtualBox
-  ```
-  sudo pacman -S virtualbox-guest-iso
-  mount /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso /mnt
-  cd /mnt
-  ./VBoxLinuxAdditions.run
-  ```
+- virtualbox doesn't support efi out of the box (important for `grub-install`)
+```
+# install the package to get guest support in virtualbox
+sudo pacman -S virtualbox-guest-iso
+# mount the installed iso
+sudo mount /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso /mnt
+cd /mnt
+# execute the guest extension
+sudo ./VBoxLinuxAdditions.run
+```
 - sometimes you need `picom --experimental-backend` instead of `picom` (.config/i3/config)
 
-## font
+## font problems
 execute `fc-cache -vf` to cache all installed fonts
 
-## lightdm
-see [.dot-syl-setup](https://github.com/photovoltex/dotfiles/blob/main/.dot-syl-setup)
-```
-sudo usermod -aG $(whoami) lightdm
-chmod g+rx ~
-sudo rm -f /etc/lightdm/lightdm.conf
-sudo ln -s ~/.config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
-sudo ln -s ~/.config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
-sudo ln -s ~/Wallpapers/3440x1440p_neon.jpg /usr/share/pixmaps/wallpaper.jpg
-
-systemctl enable lightdm
-```
+## monitor
+- example for an 21:9 1440p and 16:9 1080p monitor (session only)
+  -  `xrandr --output DP-2 --mode 3440x1440 --output HDMI-0 --mode 1920x1080 --pos 3440x360`
+-  `nvidia-settings` (pac) recommended for easy multi monitor setup if u use a nvidia gpu

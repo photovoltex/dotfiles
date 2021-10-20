@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+prio_player="ncspot"
+player=$(~/.scripts/polybar/get-player)
+
+if [ $? -eq 0 ]
+then 
+# polybar-msg hook copy-audio-url 3
+    for item in $(playerctl -l)
+    do if [ "$item" == "$prio_player" ]
+        then 
+        # play on prior device
+            playerctl -p $prio_player next
+            exit
+        fi
+    done
+    # next on first found device (let playerctl decide)
+    playerctl next
+fi
+
+polybar-msg hook a-volume 1

@@ -4,7 +4,7 @@ wal -c
 wal -qi /usr/share/pixmaps/wallpaper.jpg
 echo "Updated pywal colors"
 
-oomox-cli /opt/oomox/scripted_colors/xresources/xresources -o pywal-generated > /dev/null
+oomox-cli /opt/oomox/scripted_colors/xresources/xresources -o pywal > /dev/null
 echo "Updated gtk-theme"
 
 # update the firefox theme

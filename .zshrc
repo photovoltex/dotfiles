@@ -75,14 +75,14 @@ plugins=(
    git
    dotenv
    npm
-   zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-source ~/.bw-session
+bindkey "^[[C" forward-word
+bindkey "^[[D" backward-word
 
 export LANG=en_US.UTF-8
 
@@ -106,3 +106,6 @@ alias icat="kitty +kitten icat"
 alias uwu="uwufetch"
 alias fcat="kitty + list-fonts --psnames"
 alias rdunst="killall -q dunst"
+alias rpoly="polybar-msg cmd restart"
+alias qpoly="polybar-msg cmd quit"
+alias src="omz reload"

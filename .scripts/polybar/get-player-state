@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+player=$(~/.scripts/polybar/get-player)
+
+if [ $? -eq 0 ]
+then 
+    echo "$player -"
+    polybar-msg hook a-plpato 2
+else 
+    echo "none -"
+    polybar-msg hook a-plpato 1
+fi
+
+

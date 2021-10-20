@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+prio_player="ncspot"
+
+echo "$(playerctl -sp $prio_player volume | cut -c3-4)%"
+
+if [ $? -eq 1 ]
+then echo "$(playerctl volume | cut -c3-4)%"
+fi

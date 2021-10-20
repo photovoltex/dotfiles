@@ -35,6 +35,10 @@
 !.config/polybar/**
 !.config/wal
 !.config/wal/**/*
+!.config/neofetch
+!.config/neofetch/**
+!.config/flameshot
+!.config/flameshot/**
 
 !.scripts
 !.scripts/**

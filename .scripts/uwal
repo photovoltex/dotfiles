@@ -16,7 +16,7 @@ else
         ~/.scripts/rwal $1
         echo "Update done"
     else
-        echo "File doesn't exist or provided path isn't absolute"
+        echo "File doesn't exist or provided path isn't absolute. Please provide a valid path to your wallpaper."
         exit
     fi
 fi
