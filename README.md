@@ -48,6 +48,7 @@ yay -S ncspot polybar uwufetch visual-studio-code-bin \
     nerd-fonts-jetbrains-mono ttf-symbola
 ```
 
+> todo: add pulseaudio und pulseaudio gui mixer
 - base packages
   - networkmanager
   - sudo
