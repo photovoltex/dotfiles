@@ -1,0 +1,86 @@
+#!/bin/bash
+# 
+# " - Shutdown"
+# " - Shutdown"
+# "ﰇ - Reboot"
+# "鈴 - Suspend"
+# " - Hibernate"
+# " - Log out"
+
+wofi_params="--show=dmenu --prompt= --width=200 --insensitive --location=top_left --lines=6 --sort-order=default"
+
+all=(shutdown reboot suspend hibernate logout lockscreen)
+confirmations=(reboot shutdown logout hibernate)
+
+declare -A texts
+texts[lockscreen]="lock screen"
+texts[logout]="log out"
+texts[suspend]="suspend"
+texts[hibernate]="hibernate"
+texts[reboot]="reboot"
+texts[shutdown]="shut down"
+
+declare -A icons
+icons[lockscreen]="\uf023"
+icons[logout]="\uf842"
+icons[suspend]="\uf9b1"
+icons[hibernate]="\uf7c9"
+icons[reboot]="\ufc07"
+icons[shutdown]="\uf011"
+icons[cancel]="\u00d7"
+
+declare -A actions
+actions[lockscreen]="swaylock"
+actions[logout]="swaymsg exit"
+actions[suspend]="systemctl suspend-then-hibernate"
+actions[hibernate]="systemctl hibernate"
+actions[reboot]="systemctl reboot"
+actions[shutdown]="systemctl poweroff"
+
+for entry in "${all[@]}"
+do
+    if [ -n "$select_msg" ]
+    then
+        select_msg+="\n"
+    fi
+    select_msg+="$(echo -e "\u200e${icons[$entry]} - ${texts[$entry]^}")"
+done
+
+while true
+do
+    # stdout from wofi
+    command=$(echo -e "$select_msg" | wofi $wofi_params)
+    wofi_success=$(echo $?)
+
+    if [ $wofi_success -eq 0 ]
+    then
+        # sanitized output => usable with the defined arrays
+        selected=$(echo ${command,,} | cut -d" " -f3- | sed 's/ //g')
+        
+        if [[ " ${confirmations[*]} " =~ " ${selected} " ]]
+        then
+            cancel_msg="$(echo "\u200e${icons[$selected]} - Yes, ${texts[$selected]}")\n"
+            cancel_msg+=$(echo "\u200e${icons[cancel]} - No, cancel")
+
+            confirmation=$(echo -e "$cancel_msg" | wofi $wofi_params)
+            wofi_success=$(echo $?)
+            confirmation_selected=$(echo ${confirmation,,} | cut -d" " -f4- | sed 's/ //g')
+
+            if [ $wofi_success -eq 0 ]
+            then
+                if [ "$selected" = "$confirmation_selected" ]
+                then 
+                    # echo "${actions[$selected]}"
+                    ${actions[$selected]}
+                fi 
+                exit
+            fi
+        else
+            # echo "${actions[$selected]}"
+            ${actions[$selected]}
+            exit
+        fi
+    else 
+        exit
+    fi
+done
