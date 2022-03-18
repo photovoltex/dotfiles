@@ -1,3 +1,18 @@
+zstyle ':znap:*' repos-dir ~/Repositories/zsh-snap
+source ~/Repositories/zsh-snap/znap.zsh
+
+znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+
+if [ `tput colors` = "256" ]; then
+   echo "  ／l、"
+   echo "（ﾟ､ ｡ ７"
+   echo "  l、ﾞ~ヽ"
+   echo "  じしf_, )ノ"
+fi
+
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +23,8 @@ export ZSH="/home/photovoltex/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="avit"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -79,18 +95,25 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# 
+### User configuration
+# 
+
+# https://unix.stackexchange.com/a/313812
+# real-backward-delete-word () {
+#    local WORDCHARS='~!#$%^&*(){}[]<>?+;'
+#    zle backward-delete-word
+# }
+# zle -N real-backward-delete-word
 
 bindkey "^[[C" forward-word
 bindkey "^[[D" backward-word
 
-export LANG=en_US.UTF-8
+bindkey "^[D" forward-kill-word
+# alt+backspace works and strg (not holding) + backspace
+# bindkey '^?' real-backward-delete-word
 
-export VISUAL=code
-export EDITOR=code
-export BROWSER=firefox
-
-export PATH=$HOME/.local/bin:$HOME/.scripts:$PATH
+source /etc/environment
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -101,11 +124,24 @@ export PATH=$HOME/.local/bin:$HOME/.scripts:$PATH
 alias la="ls -a"
 alias pac="pacman"
 alias pac2="sudo pacman -Qtdq | sudo pacman -Rns -"
-alias icat="kitty +kitten icat"
+alias supacs="sudo pacman -S"
+alias supacr="sudo pacman -R"
 
-alias uwu="uwufetch"
-alias fcat="kitty + list-fonts --psnames"
-alias rdunst="killall -q dunst"
-alias rpoly="polybar-msg cmd restart"
-alias qpoly="polybar-msg cmd quit"
+alias edit-kernel-parameters="sudo vim /boot/loader/entries/2022-03-04_17-21-45_linux.conf"
+
+alias icat="kitty +kitten icat"
+alias fcat="kitty +list-fonts --psnames"
+
 alias src="omz reload"
+alias upznap="znap pull"
+
+alias netstat="nmcli d"
+alias wifion="nmcli radio wifi on"
+alias wifioff="nmcli radio wifi off"
+alias wifishow="nmcli device wifi list"
+alias wifidis="nmcli d disconnect wlp170s0"
+
+alias hotspoton="nmcli radio wifi on && sleep 2 && nmcli device wifi hotspot ssid coffee-planet password 3o4rhio3non"
+alias hotspotshow="nmcli device wifi show-password"
+
+export LS_COLORS=""

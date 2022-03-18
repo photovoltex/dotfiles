@@ -2,3 +2,6 @@
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 	branch = master
+[submodule ".config/bpytop/themes"]
+	path = .config/bpytop/themes
+	url = https://github.com/catppuccin/btop.git

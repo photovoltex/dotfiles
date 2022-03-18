@@ -1,51 +1,38 @@
 # ignore all
 **
-!.gitignore
 
-# documentation!!!!
-!README.md
-
-# x stuff
-!.zprofile
-!.xinitrc
-
-# ohmyzsh
-!.zshrc
-!.oh-my-zsh/
-!.oh-my-zsh/**
-
-# config files
 !.config/
-!.config/i3
-!.config/i3/**
-!.config/lightdm
-!.config/lightdm/**
-
-# theme stuff
-!.gtkrc-2.0
-!.config/picom
-!.config/picom/**
-!.config/kitty
-!.config/kitty/**
-!.config/rofi
-!.config/rofi/**
+!.config/bpytop
+!.config/bpytop/themes
+!.config/bpytop/bpytop.conf
 !.config/gtk-3.0
 !.config/gtk-3.0/**
-!.config/polybar
-!.config/polybar/**
-!.config/wal
-!.config/wal/**/*
+!.config/kitty
+!.config/kitty/**
+!.config/ncspot
+!.config/ncspot/config.toml
+!.config/sway
+!.config/sway/**
+!.config/waybar
+!.config/waybar/**
+!.config/wofi
+!.config/wofi/**
 !.config/neofetch
 !.config/neofetch/**
-!.config/flameshot
-!.config/flameshot/**
+
+!.oh-my-zsh
 
 !.scripts
 !.scripts/**
 
-!.install
-!.dot-?*-setup
+!.swaylock
+!.swaylock/**
 
-# wallpapers
-!Wallpapers/
-!Wallpapers/**
+!.gitignore
+!.gitmodules
+!.gtkrc-2.0
+
+!.zshrc
+
+# documentation!!!!
+!README.md
