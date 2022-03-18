@@ -1,11 +1,11 @@
 zstyle ':znap:*' repos-dir ~/Repositories/zsh-snap
 source ~/Repositories/zsh-snap/znap.zsh
 
-znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 
 if [ `tput colors` = "256" ]; then
+   echo ""
    echo "  ／l、"
    echo "（ﾟ､ ｡ ７"
    echo "  l、ﾞ~ヽ"

@@ -219,6 +219,8 @@ set $lock swaylock
     bindsym XF86AudioLowerVolume exec pamixer -d 1      #F2
     bindsym XF86AudioRaiseVolume exec pamixer -i 1      #F3
 
+    bindsym Print exec ~/.scripts/grim-screenshot_all   #F11
+
     # framework button F12 -> free to modify
     # bindsym XF86AudioMedia exec ...
     # $mod+p sudo free... -> F9
@@ -252,7 +254,8 @@ for_window [app_id="nemo"] floating enable
 for_window [app_id="tlp-ui"] floating enable
 for_window [app_id="blueberry.py"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
-for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set width 800 px height 450 px, move position 830 px 565 px, sticky on
+for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set width 800 px height 450 px, move position 1436 px 994 px, sticky on
+for_window [app_id="thunderbird" title="^$"] floating enable, sticky on # , move position 830 px 565 px
 
 default_border none
 default_floating_border none
@@ -262,6 +265,8 @@ gaps inner 15
 
 exec xdg-settings set default-web-browser firefox.desktop
 exec xdg-mime default firefox.desktop x-scheme-handler/https x-scheme-handler/http
+
+exec mako
 
 # bindsym $mod+tab workspace back_and_forth
 # bindsym $mod+tab workspace next_on_output 

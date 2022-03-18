@@ -6,19 +6,21 @@
 !.config/bpytop/themes
 !.config/bpytop/bpytop.conf
 !.config/gtk-3.0
-!.config/gtk-3.0/**
+!.config/gtk-3.0/settings.ini
 !.config/kitty
 !.config/kitty/**
+!.config/mako
+!.config/mako/config
 !.config/ncspot
 !.config/ncspot/config.toml
 !.config/sway
-!.config/sway/**
+!.config/sway/config
 !.config/waybar
 !.config/waybar/**
 !.config/wofi
 !.config/wofi/**
 !.config/neofetch
-!.config/neofetch/**
+!.config/neofetch/config.conf
 
 !.oh-my-zsh
 
@@ -34,5 +36,5 @@
 
 !.zshrc
 
-# documentation!!!!
+# documentation!!!! ha ha
 !README.md
