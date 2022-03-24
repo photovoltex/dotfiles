@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p $HOME/Screenshots/$(date +'%B_%C%y')
+echo $HOME/Screenshots/$(date +'%B_%C%y')/$(date +'Screenshot-%d_%H:%M:%S.png')

@@ -59,6 +59,7 @@ window#waybar.hidden {
 #network,
 #pulseaudio,
 #custom-watt-usage,
+#custom-notification,
 #tray,
 #mode {
     padding: 0 10px;
@@ -152,6 +153,10 @@ label:focus {
 
 #clock {
     background-color: #C9CBFF;
+}
+
+#custom-notification {
+    background-color: #F2CDCD;
 }
 
 #tray {

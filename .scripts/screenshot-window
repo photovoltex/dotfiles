@@ -1,0 +1,5 @@
+#!/bin/bash
+file_location=$(~/.scripts/screenshot-file_location)
+
+grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" $file_location
+~/.scripts/screenshot-notification $file_location

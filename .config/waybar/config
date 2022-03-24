@@ -4,7 +4,7 @@
     "spacing": 4, 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window", "wlr/taskbar"],
     "modules-center": ["custom/media"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/watt-usage", "battery", "clock", "tray"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/watt-usage", "battery", "clock", "custom/notification", "tray"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -13,7 +13,7 @@
             "1": "",  // terminal-ws
             "2": "🌎", // browser
             "3": "",  // coding-ws
-            "9": "",  // discord
+            "10": "",  // discord
             "urgent": "",
             "focused": "",
             "default": ""
@@ -22,7 +22,7 @@
             "1": [],
             "2": [],
             "3": [],
-            "9": []
+            "10": []
         }
     },
     "wlr/taskbar":{
@@ -144,6 +144,22 @@
         "interval": 5,
         "on-click": "kitty -e sudo powertop",
         "exec": "~/.scripts/power-usage-now"
-    }
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "notification": "<span foreground='red'><sup></sup></span>",
+          "none": "",
+          "dnd-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+      },
 }
 

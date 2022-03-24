@@ -1,0 +1,4 @@
+#!/bin/bash
+unzip_dir=$(echo $1 | awk -F.zip '{print $1}')
+mkdir -p $unzip_dir
+unzip $1 -d $unzip_dir

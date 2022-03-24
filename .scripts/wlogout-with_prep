@@ -1,0 +1,3 @@
+#!/bin/bash
+grim ~/.config/wlogout/wlogout_screenshot.png
+wlogout --margin-top 570 --margin-bottom 570 --buttons-per-row 5

@@ -8,19 +8,24 @@
 !.config/gtk-3.0
 !.config/gtk-3.0/settings.ini
 !.config/kitty
-!.config/kitty/**
-!.config/mako
-!.config/mako/config
+!.config/kitty/*.conf
 !.config/ncspot
 !.config/ncspot/config.toml
-!.config/sway
-!.config/sway/config
-!.config/waybar
-!.config/waybar/**
-!.config/wofi
-!.config/wofi/**
 !.config/neofetch
 !.config/neofetch/config.conf
+!.config/sway
+!.config/sway/config
+!.config/swaync
+!.config/swaync/**
+!.config/waybar
+!.config/waybar/**
+!.config/wlogout
+!.config/wlogout/**
+.config/wlogout/wlogout_screenshot.png
+!.config/wofi
+!.config/wofi/**
+!.config/zathura
+!.config/zathura/zathurarc
 
 !.oh-my-zsh
 

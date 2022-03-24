@@ -1,0 +1,8 @@
+#!/bin/bash
+geomentry=$(slurp)
+if [ $(echo $?) -eq 0 ]
+then 
+    file_location=$(~/.scripts/screenshot-file_location)
+    grim -g "$geomentry" $file_location
+    ~/.scripts/screenshot-notification $file_location
+fi

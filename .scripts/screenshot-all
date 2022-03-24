@@ -1,0 +1,4 @@
+#!/bin/bash
+file_location=$(~/.scripts/screenshot-file_location)
+grim $file_location
+~/.scripts/screenshot-notification $file_location

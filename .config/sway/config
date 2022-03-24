@@ -1,5 +1,9 @@
 # complete reference: `man 5 sway`
 
+font pango:FiraSans 10
+titlebar_border_thickness 0
+titlebar_padding 2
+
 # 
 ### Variables
 #
@@ -20,11 +24,8 @@ set $lock swaylock
 #
 # `man 5 sway-output` `swaymsg -t get_outputs`
     output * bg /usr/share/backgrounds/sway/dark-cat.png fill
-    output eDP-1 {
-        scale 1
-        # adaptive_sync on
-    }
-
+    output eDP-1 scale 1
+    # output eDP-1 disable
 
 # 
 ### Input configuration
@@ -38,6 +39,10 @@ set $lock swaylock
         pointer_accel 0.17
         accel_profile "adaptive"
         # middle_emulation enabled
+    }
+
+    input "1133:45092:G604_LIGHTSPEED_MouseX" {
+        pointer_accel 0.1
     }
 
 
@@ -72,9 +77,6 @@ set $lock swaylock
     floating_modifier $mod normal
 
     bindsym $mod+Shift+c reload
-    # logout
-    bindsym $mod+Shift+e exec ~/.scripts/wofi-power_menu
-    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -188,6 +190,7 @@ set $lock swaylock
         # Return to default mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
     }
     bindsym $mod+r mode "resize"
 
@@ -200,9 +203,9 @@ set $lock swaylock
 ### Screenshot
 # 
     # copy selection to clipboard
-    bindsym $mod+Shift+S exec ~/.scripts/grim-screenshot_selection
+    bindsym $mod+Shift+S exec ~/.scripts/screenshot-selection
     # todo: doenst work yet # screenshot current window to clipboard
-    bindsym $mod+Shift+Ctrl+S exec ~/.scripts/grim-screenshot_window
+    bindsym $mod+Shift+Ctrl+S exec ~/.scripts/screenshot-window
 
 # 
 ### F-Key control
@@ -219,7 +222,7 @@ set $lock swaylock
     bindsym XF86AudioLowerVolume exec pamixer -d 1      #F2
     bindsym XF86AudioRaiseVolume exec pamixer -i 1      #F3
 
-    bindsym Print exec ~/.scripts/grim-screenshot_all   #F11
+    bindsym Print exec ~/.scripts/screenshot-all        #F11
 
     # framework button F12 -> free to modify
     # bindsym XF86AudioMedia exec ...
@@ -228,6 +231,7 @@ set $lock swaylock
 # 
 ### others
 # 
+    bindsym XF86PowerOff exec ~/.scripts/wlogout-with_prep
     focus_follows_mouse no
     
 
@@ -246,7 +250,7 @@ exec_always {
 seat seat0 xcursor_theme Catppuccin-Peach-Cursors
 
 # 
-### Custom Settings
+### Custom window settings
 # 
 for_window [app_id="telegramdesktop"] floating enable
 for_window [app_id="pavucontrol"] floating enable
@@ -254,8 +258,9 @@ for_window [app_id="nemo"] floating enable
 for_window [app_id="tlp-ui"] floating enable
 for_window [app_id="blueberry.py"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="imv"] floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set width 800 px height 450 px, move position 1436 px 994 px, sticky on
-for_window [app_id="thunderbird" title="^$"] floating enable, sticky on # , move position 830 px 565 px
+
 
 default_border none
 default_floating_border none
@@ -263,10 +268,29 @@ default_floating_border none
 gaps outer 0
 gaps inner 15
 
+
+# 
+### default handler (browser, pdf)
+# 
 exec xdg-settings set default-web-browser firefox.desktop
 exec xdg-mime default firefox.desktop x-scheme-handler/https x-scheme-handler/http
+exec xdg-mime default org.pwmt.zathura.desktop application/pdf
 
-exec mako
+
+# 
+### nemo config
+# 
+exec gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+exec gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg -e
+
+
+# 
+### Notificaton
+# 
+exec swaync
+exec_always swaync-client -R
+exec_always swaync-client -rs
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # bindsym $mod+tab workspace back_and_forth
 # bindsym $mod+tab workspace next_on_output 
