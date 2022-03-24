@@ -10,17 +10,32 @@ indicator-thickness=7
 effect-blur=7x5
 effect-vignette=0.5:0.5 
 
-key-hl-color=ABE9B3
-
-ring-color=F28FAD
-
-line-color=00000000
-inside-color=00000008
 separator-color=00000000
+ring-wrong-color=F28FAD
 
-inside-ver-color=96CDFB30
+text-color=F5E0DC
+inside-color=00000000
+ring-color=575268
+line-color=575268
 
-line-ver-color=96CDFB30
-ring-ver-color=96CDFB30
+bs-hl-color=F28FAD
+caps-lock-bs-hl-color=DDB6F2
+key-hl-color=ABE9B3
+caps-lock-key-hl-color=B5E8E0
+
+text-caps-lock-color=E8A2AF
+inside-caps-lock-color=00000000
+line-caps-lock-color=E8A2AF
+ring-caps-lock-color=E8A2AF
+
+text-ver-color=96CDFB
+inside-ver-color=00000000
+line-ver-color=96CDFB
+ring-ver-color=96CDFB
+
+text-clear-color=F8BD96
+inside-clear-color=00000000
+line-clear-color=F8BD96
+ring-clear-color=F8BD96
 
 fade-in=0.2
