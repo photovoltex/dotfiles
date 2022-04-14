@@ -24,8 +24,11 @@
 .config/wlogout/wlogout_screenshot.png
 !.config/wofi
 !.config/wofi/**
+!.config/workstyle
+!.config/workstyle/config.toml
 !.config/zathura
 !.config/zathura/zathurarc
+!.config/mimeapps.list
 
 !.oh-my-zsh
 
@@ -34,6 +37,8 @@
 
 !.swaylock
 !.swaylock/**
+
+!.editorconfig
 
 !.gitignore
 !.gitmodules

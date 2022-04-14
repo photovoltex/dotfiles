@@ -1,13 +1,12 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FiraSans, FontAwesome6Free, symbola, feather, sans-serif;
-    font-size: 13;
+    font-size: 13px;
     color: #F5E0DC
 }
 
 window#waybar {
-    background-color: rgba(48, 45, 65, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: transparent;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -43,7 +42,6 @@ window#waybar.hidden {
 
 #mode {
     background-color: #302D41;
-    border-bottom: 3px solid #F5E0DC;
 }
 
 #taskbar button.active {
@@ -61,9 +59,16 @@ window#waybar.hidden {
 #custom-watt-usage,
 #custom-notification,
 #tray,
+#idle_inhibitor {
+    padding: 0 10px;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: #1E1E2E;
+    border-radius: 25px;
+}
+
 #mode {
     padding: 0 10px;
-    color: #1E1E2E;
 }
 
 #window,
@@ -79,6 +84,10 @@ window#waybar.hidden {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
+}
+
+#idle_inhibitor {
+    background-color: #F5E0DC;
 }
 
 

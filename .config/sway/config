@@ -1,10 +1,8 @@
 # complete reference: `man 5 sway`
 
 font pango:FiraSans 10
-titlebar_border_thickness 0
-titlebar_padding 2
 
-# 
+#
 ### Variables
 #
 # Mod1 for Alt
@@ -16,7 +14,7 @@ set $up k
 set $right l
 
 set $term kitty
-set $menu wofi 
+set $menu wofi
 set $lock swaylock
 
 #
@@ -27,13 +25,13 @@ set $lock swaylock
     output eDP-1 scale 1
     # output eDP-1 disable
 
-# 
+#
 ### Input configuration
 #
 # `man 5 sway-input` `swaymsg -t get_inputs`
     # dwt => disable while typing
     input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
-        dwt enabled 
+        dwt enabled
         tap enabled
         natural_scroll enabled
         pointer_accel 0.17
@@ -50,6 +48,13 @@ set $lock swaylock
 #
 # Example configuration:
 #
+#
+### power managment, swaylock
+#
+    bindsym $mod+Shift+e exec ~/.scripts/wlogout-with_prep
+    bindsym XF86PowerOff exec ~/.scripts/wlogout-with_prep
+    bindsym XF86AudioMedia exec $lock
+
     exec swayidle -w \
         timeout 300 $lock \
         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
@@ -60,7 +65,7 @@ set $lock swaylock
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 
-# 
+#
 ### Key bindings
 #
 # Basics:
@@ -194,22 +199,22 @@ set $lock swaylock
     }
     bindsym $mod+r mode "resize"
 
-# 
+#
 # Clipboard managment
-# 
-    exec wl-paste -t text --watch clipman store --no-persis
+#
+    exec wl-paste -t text --watch clipman store --no-persist
 
-# 
+#
 ### Screenshot
-# 
+#
     # copy selection to clipboard
     bindsym $mod+Shift+S exec ~/.scripts/screenshot-selection
     # todo: doenst work yet # screenshot current window to clipboard
     bindsym $mod+Shift+Ctrl+S exec ~/.scripts/screenshot-window
 
-# 
+#
 ### F-Key control
-# 
+#
     # light need to be executed with sudo and no pwd -> visudo
     bindsym XF86MonBrightnessUp exec sudo light -A 5    #F7
     bindsym XF86MonBrightnessDown exec sudo light -U 5  #F8
@@ -225,17 +230,12 @@ set $lock swaylock
     bindsym Print exec ~/.scripts/screenshot-all        #F11
 
     # framework button F12 -> free to modify
-    # bindsym XF86AudioMedia exec ...
     # $mod+p sudo free... -> F9
 
-# 
-### others
-# 
-    bindsym XF86PowerOff exec ~/.scripts/wlogout-with_prep
     focus_follows_mouse no
-    
 
-# 
+
+#
 ### GTK3 Theme (GTK2 -> ~/.gtkrc-2.0)
 #
 set $gnome-schema org.gnome.desktop.interface
@@ -249,9 +249,9 @@ exec_always {
 
 seat seat0 xcursor_theme Catppuccin-Peach-Cursors
 
-# 
+#
 ### Custom window settings
-# 
+#
 for_window [app_id="telegramdesktop"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="nemo"] floating enable
@@ -259,42 +259,50 @@ for_window [app_id="tlp-ui"] floating enable
 for_window [app_id="blueberry.py"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="imv"] floating enable
+for_window [title="dockeye"] floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set width 800 px height 450 px, move position 1436 px 994 px, sticky on
+for_window [app_id="python3"] floating enable
 
+#
+### Border and Titlebars
+#
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
 
-default_border none
-default_floating_border none
+titlebar_border_thickness 0
+titlebar_padding 2
+
+# janky colors... should adjust them later when problems occure
+# class                      border  backgr. text  indicator child_border
+    client.focused           #F5E0DC #F5E0DC #302D41 #ABE9B3 #F5E0DC
+    client.unfocused         #302D41 #302D41 #F5E0DC #302D41 #302D41
+    client.focused_inactive  #F8BD96 #1E1E2E #F5E0DC #302D41 #302D41
+    client.focused_tab_title #F8BD96 #F8BD96 #1E1E2E
+    client.urgent            #2f343a #900000 #1E1E2E #900000 #900000
 
 gaps outer 0
 gaps inner 15
 
 
-# 
-### default handler (browser, pdf)
-# 
-exec xdg-settings set default-web-browser firefox.desktop
-exec xdg-mime default firefox.desktop x-scheme-handler/https x-scheme-handler/http
-exec xdg-mime default org.pwmt.zathura.desktop application/pdf
-
-
-# 
+#
 ### nemo config
-# 
+#
 exec gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 exec gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg -e
 
 
-# 
+#
 ### Notificaton
-# 
+#
 exec swaync
 exec_always swaync-client -R
 exec_always swaync-client -rs
-bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym $mod+Shift+n exec ~/.scripts/swaync-open_with_advanced_exit
 
 # bindsym $mod+tab workspace back_and_forth
-# bindsym $mod+tab workspace next_on_output 
-# bindsym $mod+Shift+tab workspace prev_on_output 
+# bindsym $mod+tab workspace next_on_output
+# bindsym $mod+Shift+tab workspace prev_on_output
 
 #
 # Status Bar:
@@ -303,5 +311,13 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 bar {
     swaybar_command waybar
 }
+exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+
+# startup setup
+exec swaymsg "workspace 1; exec kitty -e bpytop; exec kitty;"
+exec swaymsg "workspace 2; exec firefox;"
+exec swaymsg "workspace 10; exec thunderbird; exec vorta; sway '[app_id=\"python3\"]' kill;"
+exec swaymsg "workspace 1; exec telegram-desktop;"
+exec sway '[app_id="telegramdesktop"]' move container to scratchpad
 
 include /etc/sway/config.d/*

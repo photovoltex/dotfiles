@@ -1,41 +1,14 @@
 {
     /* `otf-font-awesome` is required to be installed for icons */
-    "height": 30, 
-    "spacing": 4, 
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window", "wlr/taskbar"],
+    "height": 40,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["custom/media"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/watt-usage", "battery", "clock", "custom/notification", "tray"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/watt-usage", "battery", "clock", "idle_inhibitor", "custom/notification", "tray"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": /*{name}*/ "{icon}",
-        "format-icons": {
-            "1": "",  // terminal-ws
-            "2": "🌎", // browser
-            "3": "",  // coding-ws
-            "10": "",  // discord
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        },
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "10": []
-        }
-    },
-    "wlr/taskbar":{
-        "format": "{icon}",
-        "icon-size": 16,
-        "tooltip-format": "{title}",
-        "active-first": true,  
-        "on-click": "minimize-raise", // no minimize so this will only activate...
-        "on-click-middle": "close",
-        "ignore-list": [
-            "kitty",
-            "Picture-in-Picture"
-        ]
+        "format": "{icon}"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -46,9 +19,16 @@
         "max-length": 50,
         "rewrite": {
             "(.*) — Mozilla Firefox": "🌎 $1",
-            "(.*) - Visual Studio Code": " $1",
-            "(.*) - Mozilla Thunderbird": " $1",
+            "(.*) - Visual Studio Code": "  $1",
+            "(.*) - Mozilla Thunderbird": "  $1",
             "(.*) - Discord": " $1"
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
         }
     },
     "tray": {
@@ -67,21 +47,16 @@
         "format": "{}% "
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
     },
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", ""]
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -89,12 +64,9 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
@@ -103,7 +75,6 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -157,9 +128,9 @@
         "return-type": "json",
         "exec-if": "which swaync-client",
         "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
+        "on-click": "~/.scripts/swaync-open_with_advanced_exit",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-      },
+      }
 }
 

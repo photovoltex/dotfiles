@@ -1,0 +1,8 @@
+#!/bin/bash
+
+swaync-client -t -sw
+swaymsg -- bindsym --whole-window button1 exec swaync-client -cp
+sleep 1
+# when swaync is open there is no focused window in tree
+while [ -z "$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true)')" ]; do sleep 0.1; done
+swaymsg -- unbindsym --whole-window button1
