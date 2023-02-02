@@ -1,7 +1,10 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
+	url = git@github.com:ohmyzsh/ohmyzsh.git
 	branch = master
 [submodule ".config/bpytop/themes"]
 	path = .config/bpytop/themes
-	url = https://github.com/catppuccin/btop.git
+	url = git@github.com:catppuccin/btop.git
+[submodule "/home/photovoltex/.config/zathura/theme"]
+	path = /home/photovoltex/.config/zathura/theme
+	url = git@github.com:catppuccin/zathura.git

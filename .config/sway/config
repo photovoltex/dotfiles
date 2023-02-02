@@ -22,7 +22,10 @@ set $lock swaylock
 #
 # `man 5 sway-output` `swaymsg -t get_outputs`
     output * bg /usr/share/backgrounds/sway/dark-cat.png fill
+#     output eDP-1 mode 2206x1504
+#     output eDP-1 pos 50 0
     output eDP-1 scale 1
+    output DP-3 enable
     # output eDP-1 disable
 
 #
@@ -30,7 +33,17 @@ set $lock swaylock
 #
 # `man 5 sway-input` `swaymsg -t get_inputs`
     # dwt => disable while typing
-    input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
+    # input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
+    input type:touchpad {
+        dwt enabled
+        tap enabled
+        natural_scroll enabled
+        pointer_accel 0.17
+        accel_profile "adaptive"
+        # middle_emulation enabled
+    }
+
+    input type:pointer {
         dwt enabled
         tap enabled
         natural_scroll enabled
@@ -55,9 +68,12 @@ set $lock swaylock
     bindsym XF86PowerOff exec ~/.scripts/wlogout-with_prep
     bindsym XF86AudioMedia exec $lock
 
+    # todo: maybe add `timeout 300 'sudo light -O && sudo light -S 1' resume 'sudo light -I' \`
     exec swayidle -w \
         timeout 300 $lock \
-        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'playerctl pause' \
         before-sleep $lock
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -241,13 +257,13 @@ set $lock swaylock
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme       'Catppuccin-yellow'
+    gsettings set $gnome-schema gtk-theme       'Catppuccin-teal'
     gsettings set $gnome-schema icon-theme      'Papirus-Dark'
-    gsettings set $gnome-schema cursor-theme    'Catppuccin-Peach-Cursors'
+    gsettings set $gnome-schema cursor-theme    'Catppuccin-Teal-Cursors'
     gsettings set $gnome-schema font-name       'Fira Sans'
 }
 
-seat seat0 xcursor_theme Catppuccin-Peach-Cursors
+seat seat0 xcursor_theme Catppuccin-Teal-Cursors
 
 #
 ### Custom window settings
@@ -262,6 +278,8 @@ for_window [app_id="imv"] floating enable
 for_window [title="dockeye"] floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set width 800 px height 450 px, move position 1436 px 994 px, sticky on
 for_window [app_id="python3"] floating enable
+for_window [app_id="org.pipewire.Helvum"] floating enable
+for_window [app_id="galculator"] floating enable
 
 #
 ### Border and Titlebars
@@ -299,6 +317,11 @@ exec swaync
 exec_always swaync-client -R
 exec_always swaync-client -rs
 bindsym $mod+Shift+n exec ~/.scripts/swaync-open_with_advanced_exit
+
+#
+### automount
+#
+exec udiskie -ant
 
 # bindsym $mod+tab workspace back_and_forth
 # bindsym $mod+tab workspace next_on_output

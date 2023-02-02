@@ -13,6 +13,8 @@
 !.config/ncspot/config.toml
 !.config/neofetch
 !.config/neofetch/config.conf
+!.config/pipewire
+!.config/pipewire/**
 !.config/sway
 !.config/sway/config
 !.config/swaync
@@ -28,6 +30,7 @@
 !.config/workstyle/config.toml
 !.config/zathura
 !.config/zathura/zathurarc
+!.config/zathura/theme
 !.config/mimeapps.list
 
 !.oh-my-zsh

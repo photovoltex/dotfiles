@@ -6,6 +6,24 @@ x-scheme-handler/https=firefox.desktop;
 image/jpeg=imv.desktop;
 image/png=imv.desktop;
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-0CREK1.desktop
+message/rfc822=userapp-Thunderbird-0CREK1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-0CREK1.desktop
+application/msword=userapp-zaread-3UD5L1.desktop
+text/x-csrc=visual-studio-code.desktop
+application/zip=org.pwmt.zathura-cb.desktop
+text/plain=visual-studio-code.desktop
+application/xml=visual-studio-code.desktop
 
 [Added Associations]
 application/json=visual-studio-code.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-IH6VK1.desktop;org.telegram.desktop.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-0CREK1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-0CREK1.desktop;
+application/msword=userapp-zaread-3UD5L1.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=userapp-zaread-3UD5L1.desktop;
+text/x-csrc=visual-studio-code.desktop;
+application/zip=userapp-nemo-unzip_to_dir-ZAY4L1.desktop;org.pwmt.zathura-cb.desktop;
+text/plain=visual-studio-code.desktop;
+application/xml=visual-studio-code.desktop;

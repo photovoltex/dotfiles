@@ -67,10 +67,12 @@ alias supac="sudo pacman"
 alias supacs="sudo pacman -S"
 alias supacr="sudo pacman -R"
 
-alias edit-kernel-parameters="sudo vim /boot/loader/entries/2022-03-04_17-21-45_linux.conf"
-
 alias icat="kitty +kitten icat"
 alias fcat="kitty +list-fonts --psnames"
+
+alias gpgkeygen="gpg --full-gen-key"
+
+alias swayappids="swaymsg -t get_tree | grep 'app_id'"
 
 alias src="omz reload"
 alias upznap="znap pull"
@@ -84,7 +86,9 @@ alias wifidis="nmcli d disconnect wlp170s0"
 alias hotspoton="nmcli radio wifi on && sleep 2 && nmcli device wifi hotspot ssid coffee-planet password 3o4rhio3non"
 alias hotspotshow="nmcli device wifi show-password"
 
+alias code="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
+
 # env var for cmd use only -> possible cmd/bin paths
-export PATH=$HOME/.local/bin:$HOME/.scripts/:$HOME/go/bin/:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.scripts/:$HOME/go/bin/:$PATH
 # workaround to fix bad ls_colors set by theme
 export LS_COLORS=""
